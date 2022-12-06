@@ -25,6 +25,13 @@ pipelines:
             - name: mvn_repo
           integrations:
             - name: {{ .Values.artifactory }}
+          runtime:
+            type: image
+            image:
+              custom:
+                name: releases-docker.jfrog.io/jfrog/pipelines-u20java
+                tag: '17'
+                options: -v ~/.m2:/root/.m2
 
       - name: publish_build
         type: PublishBuildInfo
